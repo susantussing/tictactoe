@@ -1,0 +1,26 @@
+body {
+  padding: 32px;
+}
+
+.box {
+  display: block;
+  float: left;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.box:nth-child(3n+1) {
+  clear: both;
+}
+
+.box:nth-child(3n) {
+  border-right: none;
+}
+
+.box:nth-child(n + 7) {
+  border-bottom: none;
+}
