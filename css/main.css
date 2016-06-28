@@ -38,14 +38,22 @@ a {
 .reset {
   display: block;
   border: 1px solid black;
-  clear: both;
   margin-top: 32px;
   margin-left: 32px;
   width: 128px;
   text-align: center;
+  clear: both;
 }
 
 .grid {
   height: 194px;
   width: 194px;
+}
+
+.winner {
+  width: 194px;
+  text-align: center;
+  clear: both;
+  height: 64px;
+  line-height: 64px;
 }
