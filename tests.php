@@ -12,7 +12,15 @@
   echo "Test:  In a grid of 000100200, squares 3 and 6 are taken.\n";
 
   $grid = "000100200";
-  if (!is_available($grid, 3) && !is_available($grid, 6)) {
+  if (!is_available($grid, 3, NULL) && !is_available($grid, 6, NULL)) {
+    echo "Success!\n";
+  } else {
+    echo "Failure.\n";
+  }
+
+  echo "Test:  In that grid, square 0 is not available if there's a winner.\n";
+
+  if (!is_available($grid, 3, "X")) {
     echo "Success!\n";
   } else {
     echo "Failure.\n";
