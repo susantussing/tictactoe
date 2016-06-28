@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  
+
+<div class="grid">
 <?php
 
   function display_box($grid, $i, $player) {
@@ -40,8 +41,8 @@ HTML;
 
 
 
-?>
-<div style="clear:both;"><a href="index.php">Reset</a></div>
+?></div>
+<a href="index.php" class="reset">Reset</a>
 
 
 </body>

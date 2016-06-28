@@ -1,16 +1,21 @@
+@import 'https://fonts.googleapis.com/css?family=BioRhyme:400,700';
+
 body {
   padding: 32px;
+  font-family: BioRhyme, serif;
 }
 
 .box {
   display: block;
   float: left;
-  height: 32px;
-  width: 32px;
-  line-height: 32px;
+  height: 64px;
+  width: 64px;
+  line-height: 64px;
   text-align: center;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .box:nth-child(3n+1) {
@@ -23,4 +28,24 @@ body {
 
 .box:nth-child(n + 7) {
   border-bottom: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.reset {
+  display: block;
+  border: 1px solid black;
+  clear: both;
+  margin-top: 32px;
+  margin-left: 32px;
+  width: 128px;
+  text-align: center;
+}
+
+.grid {
+  height: 194px;
+  width: 194px;
 }
