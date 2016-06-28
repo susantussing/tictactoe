@@ -14,14 +14,24 @@
     }
   }
 
-  function display_box($grid, $i, $player) {
-    $content = num2mark($grid[$i]);
+  function is_available($grid, $square) {
+    return $grid[$square] == 0;
+  }
+
+  function display_box($grid, $square, $player) {
+    $content = num2mark($grid[$square]);
 
     $newplayer = ($player == 1) ? 2 : 1;
-    $newgrid = substr_replace($grid, $player, $i, 1);
-    echo <<<HTML
-      <a class="box" href="?grid=$newgrid&player=$newplayer">$content</a>
+    $newgrid = substr_replace($grid, $player, $square, 1);
+    if (is_available($grid, $square)) {
+      echo <<<HTML
+        <a class="box" href="?grid=$newgrid&player=$newplayer">$content</a>
 HTML;
+    } else {
+        echo <<<HTML
+          <div class="box">$content</div>   
+HTML;
+    }
   }
 
   function display_grid($grid, $player) {
