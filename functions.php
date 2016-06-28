@@ -16,19 +16,19 @@
     }
   }
 
-  function is_available($grid, $square) {
+  function is_available($grid, $square, $winner) {
     // Can this player mark this square?
-    return $grid[$square] == 0;
+    return $grid[$square] == 0 && !isset($winner);
   }
 
-  function display_square($grid, $square, $player) {
+  function display_square($grid, $square, $player, $winner) {
     // Create the HTML for a given grid square.
 
     // The letter to put in.
     $content = num2mark($grid[$square]);
 
     // If the square's free...
-    if (is_available($grid, $square)) {
+    if (is_available($grid, $square, $winner)) {
       // If we're currently player 1, next move is player 2.
       // Otherwise, we're player 2, and next move is player 1.
       $newplayer = ($player == 1) ? 2 : 1;
@@ -50,10 +50,10 @@ HTML;
     }
   }
 
-  function display_grid($grid, $player) {
+  function display_grid($grid, $player, $winner) {
     // Create the HTML to display the tic-tac-toe grid.
     for ($i = 0; $i < 9; $i++) {
-      display_square($grid, $i, $player);
+      display_square($grid, $i, $player, $winner);
     }
   }
 
