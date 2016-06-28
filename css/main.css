@@ -5,7 +5,7 @@ body {
   font-family: BioRhyme, serif;
 }
 
-.box {
+.square {
   display: block;
   float: left;
   height: 64px;
@@ -18,15 +18,15 @@ body {
   font-weight: bold;
 }
 
-.box:nth-child(3n+1) {
+.square:nth-child(3n+1) {
   clear: both;
 }
 
-.box:nth-child(3n) {
+.square:nth-child(3n) {
   border-right: none;
 }
 
-.box:nth-child(n + 7) {
+.square:nth-child(n + 7) {
   border-bottom: none;
 }
 
