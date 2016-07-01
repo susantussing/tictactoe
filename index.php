@@ -29,12 +29,12 @@
   } 
 
   if (isset($query['move'])) {
-    do_move($query['move'], $player);
+    do_move($query['move'], $human);
   }
 
   $winner = check_winner($grid);
 
-  display_grid($grid, $player, $winner);
+  display_grid();
 
 ?></div></div>
 

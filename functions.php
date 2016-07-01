@@ -4,7 +4,7 @@
     global $grid, $human, $computer;
     $grid = "000000000";
     $human = rand(1,2);
-    $computer = opponent($player);
+    $computer = opponent($human);
   }
 
   function load_game() {
@@ -61,14 +61,15 @@
     return $grid[$square] == 0 && !isset($winner);
   }
 
-  function display_square($grid, $square, $player, $winner) {
+  function display_square($square) {
+    global $grid;
     // Create the HTML for a given grid square.
 
     // The letter to put in.
     $content = num2mark($grid[$square]);
 
     // If the square's free...
-    if (is_available($grid, $square, $winner)) {
+    if (check_valid_move($square)) {
 
       // Render the HTML tag for a linked square.
       echo <<<HTML
@@ -83,10 +84,11 @@ HTML;
     }
   }
 
-  function display_grid($grid, $player, $winner) {
+  function display_grid() {
     // Create the HTML to display the tic-tac-toe grid.
-    for ($i = 0; $i < 9; $i++) {
-      display_square($grid, $i, $player, $winner);
+    global $grid;
+    for ($square = 0; $square < 9; $square++) {
+      display_square($square);
     }
   }
 
