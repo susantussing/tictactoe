@@ -55,9 +55,18 @@ HTML;
 ?>
 
 <div class="scores">
-  <div class="score"><p class="score__name">You</p><p class="score__number">0</p></div>
-  <div class="score"><p class="score__name">Computer</p><p class="score__number">0</p></div>
-  <div class="score"><p class="score__name">Draw</p><p class="score__number">0</p></div>
+  <div class="score">
+    <p class="score__name">You</p>
+    <p class="score__number">0</p>
+  </div>
+  <div class="score">
+    <p class="score__name">Computer</p>
+    <p class="score__number">0</p>
+  </div>
+  <div class="score">
+    <p class="score__name">Draw</p>
+    <p class="score__number">0</p>
+  </div>
 </div>
 
 <?php 
