@@ -74,7 +74,6 @@
 
   blank_grid();
   run_test(computer_move() == 4);
-  echo $grid . " " . computer_move() . "\n";
 
   $grid = "000010000";
   run_test(computer_move() == 0);
