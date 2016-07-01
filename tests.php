@@ -1,36 +1,73 @@
 <?php
+  
   include 'functions.php';
 
-  echo "Test:  Player 1 is X, player 2 is O.\n";
-
-  if (num2mark(1) == "X" && num2mark(2) == "O") {
-    echo "Success!\n";
-  } else {
-    echo "Failure.\n";
+  function run_test($test) {
+    if ($test) {
+      echo "Success!\n";
+    } else {
+      echo "Failure.\n";
+    }
   }
 
-  echo "Test:  In a grid of 000100200, squares 3 and 6 are taken.\n";
+  // blank_grid
+  echo "Checking to see if we can start a blank grid.\n";
+  blank_grid();
 
-  $grid = "000100200";
-  if (!is_available($grid, 3, NULL) && !is_available($grid, 6, NULL)) {
-    echo "Success!\n";
-  } else {
-    echo "Failure.\n";
-  }
+  run_test($grid == "000000000");
 
-  echo "Test:  In that grid, square 0 is not available if there's a winner.\n";
+  // do_move
+  echo "Checking to see if we can enter a move.\n";
+  blank_grid();
+  do_move(4,1);
 
-  if (!is_available($grid, 3, "X")) {
-    echo "Success!\n";
-  } else {
-    echo "Failure.\n";
-  }
+  run_test($grid == "000010000");
 
-  echo "Test:  The grid 000000111 contains a winner.  The grid 000002220 does not.\n";
-  if (check_winner("000000111") == "X" && check_winner("000002220") == "") {
-    echo "Success!\n";
-  } else {
-    echo "Failure.\n";
-  }
+  // check_valid_move
+  echo "Checking to see if invalid move reported.\n";
+  $grid = "000010000";
+  run_test(!check_valid_move(4));
 
+  echo "Checking to see if valid move reported.\n";
+  run_test(check_valid_move(0));
+
+  // check_winner
+  echo "Checking to see if winning/losing grids reported correctly.\n";
+
+  $grid = "111000000";
+  run_test(check_winner($grid) == "1");
+  $grid = "200020002";
+  run_test(check_winner($grid) == "2");
+  $grid = "110000002";
+  run_test(!check_winner($grid));
+
+  // check_winning_move
+  echo "Checking to see if winning moves are identified properly.\n";
+
+  $grid = "110000000";
+  run_test(check_winning_move(2, 1));
+  run_test(!check_winning_move(2, 2));
+
+  // computer_move
+
+  echo "Checking to see that the computer wins if it can.\n";
+
+  $_SESSION['human'] = 1;
+  $computer = 2;
+
+  $grid = "220010000";
+  run_test(computer_move() == 2);
+
+  echo "Checking to see that the computer blocks if it can.\n";
+
+  $grid = "110020000";
+  run_test(computer_move() == 2);
+
+  echo "Checking to see that the computer can make other moves.\n";
+
+  blank_grid();
+  run_test(computer_move() == 4);
+
+  $grid = "000010000";
+  run_test(computer_move() == 0);
 ?>
