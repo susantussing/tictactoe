@@ -26,9 +26,7 @@
   // If anything's set in the 'reset' query variable, reset the game.
   if (isset($query['reset'])) {
     new_game();
-  }
-
-  $player = isset($query['player']) ? $query['player'] : 1;
+  } 
 
   if (isset($query['move'])) {
     do_move($query['move'], $player);

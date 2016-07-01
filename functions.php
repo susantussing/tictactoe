@@ -1,18 +1,28 @@
 <?php 
 
   function new_game() {
-    global $grid;
+    global $grid, $player;
     $grid = "000000000";
+    $player = 2;
   }
 
   function load_game() {
-    global $grid;
+    global $grid, $player;
     $grid = $_SESSION['grid'];
+    $player = $_SESSION['player'];
   }
 
   function save_game() {
-    global $grid;
+    global $grid, $player;
     $_SESSION['grid'] = $grid;
+    switch ($player) {
+      case 1:
+        $_SESSION['player'] = 2;
+        break;
+      case 2:
+        $_SESSION['player'] = 1;
+        break;
+    }
   }
 
   function num2mark ($num) {
@@ -44,13 +54,10 @@
 
     // If the square's free...
     if (is_available($grid, $square, $winner)) {
-      // If we're currently player 1, next move is player 2.
-      // Otherwise, we're player 2, and next move is player 1.
-      $newplayer = ($player == 1) ? 2 : 1;
 
       // Render the HTML tag for a linked square.
       echo <<<HTML
-        <a class="grid__square" href="?move=$square&player=$newplayer">$content</a>
+        <a class="grid__square" href="?move=$square">$content</a>
 HTML;
     } else {
       // If the square isn't free, then make an unlinked box with the 
