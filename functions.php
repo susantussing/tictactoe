@@ -1,14 +1,17 @@
 <?php 
 
   function new_game() {
+    global $grid;
     $grid = "000000000";
   }
 
   function load_game() {
+    global $grid;
     $grid = $_SESSION['grid'];
   }
 
   function save_game() {
+    global $grid;
     $_SESSION['grid'] = $grid;
   }
 
