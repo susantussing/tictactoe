@@ -163,4 +163,18 @@ HTML;
 
   }
 
+
+  function check_draw() {
+    global $grid;
+    $winner = check_winner($grid);
+    if (!$winner) {
+      for ($square = 0; $square < 9; $square++) {
+        if (check_valid_move($square)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
 ?>

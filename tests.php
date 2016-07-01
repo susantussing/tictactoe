@@ -77,4 +77,12 @@
 
   $grid = "000010000";
   run_test(computer_move() == 0);
+
+  // check_draw
+
+  echo "Checking to see that the game knows that there's a draw.\n";
+  $grid = "221112211";
+  run_test(check_draw());
+  $grid = "111000000";
+  run_test(!check_draw());
 ?>

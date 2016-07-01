@@ -50,6 +50,16 @@
     echo <<<HTML
       <div class="winner">$winner_mark wins!</div>
 HTML;
+    if ($winner == $human) {
+      $wins++;
+    } else {
+      $losses++;
+    }
+  } elseif (check_draw()) {
+    echo <<<HTML
+      <div class="winner">It's a draw!</div>
+HTML;
+    $draws++;
   }
 
 ?>
@@ -57,15 +67,15 @@ HTML;
 <div class="scores">
   <div class="score">
     <p class="score__name">You</p>
-    <p class="score__number">0</p>
+    <p class="score__number"><?php echo $wins ?: 0; ?></p>
   </div>
   <div class="score">
     <p class="score__name">Computer</p>
-    <p class="score__number">0</p>
+    <p class="score__number"><?php echo $losses ?: 0; ?></p>
   </div>
   <div class="score">
     <p class="score__name">Draw</p>
-    <p class="score__number">0</p>
+    <p class="score__number"><?php echo $draws ?: 0; ?></p>
   </div>
 </div>
 
