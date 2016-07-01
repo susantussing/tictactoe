@@ -1,4 +1,5 @@
-<?php include 'functions.php' ?>
+<?php session_start();
+  include 'functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,12 @@
 <div class="container">
 <div class="grid">
 <?php
-
+  // If there's a grid variable in this session, we have a game in progress.
+  if (isset($_SESSION['grid'])) {
+    new_game();
+  } else {
+    load_game();
+  } 
   parse_str($_SERVER['QUERY_STRING'], $query);
   $grid = isset($query['grid']) ? $query['grid'] : "000000000";
   $player = isset($query['player']) ? $query['player'] : 1;
@@ -40,5 +46,8 @@ HTML;
   <div class="score"><p class="score__name">Draw</p><p class="score__number">0</p></div>
 </div>
 
+<?php 
+  save_game();
+?>
 </body>
 </html>

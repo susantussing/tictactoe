@@ -1,5 +1,17 @@
 <?php 
 
+  function new_game() {
+    $grid = "000000000";
+  }
+
+  function load_game() {
+    $grid = $_SESSION['grid'];
+  }
+
+  function save_game() {
+    $_SESSION['grid'] = $grid;
+  }
+
   function num2mark ($num) {
     // Converts a numerical grid square assignment to its appropriate mark.
 
