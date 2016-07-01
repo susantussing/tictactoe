@@ -1,24 +1,27 @@
 <?php 
-
+  $game_vars = ['grid', 'human', 'computer', 'wins', 'losses', 'draws'];
   function new_game() {
     global $grid, $human, $computer;
     blank_grid();
     $human = rand(1,2);
     $computer = opponent($human);
+    $wins = 0;
+    $losses = 0;
+    $draws = 0;
   }
 
   function load_game() {
-    global $grid, $human, $computer;
-    $grid = $_SESSION['grid'];
-    $human = $_SESSION['human'];
-    $computer = $_SESSION['computer'];
+    global $game_vars;
+    foreach ($game_vars as $game_var) {
+      $GLOBALS[$game_var] = $_SESSION[$game_var];
+    }
   }
 
   function save_game() {
-    global $grid, $human, $computer;
-    $_SESSION['grid'] = $grid;
-    $_SESSION['human'] = $human;
-    $_SESSION['computer'] = $computer;
+    global $game_vars;
+    foreach ($game_vars as $game_var) {
+      $_SESSION[$game_var] = $GLOBALS[$game_var];
+    }
   }
 
   function blank_grid() {
