@@ -32,6 +32,10 @@
     do_move($query['move'], $human);
   }
 
+  if ($grid != "000000000" || $computer == 1) {
+    do_move(computer_move(), $computer);
+  }
+
   $winner = check_winner($grid);
 
   display_grid();
@@ -41,8 +45,9 @@
 <?php
   
   if ($winner) {
+    $winner_mark = num2mark($winner);
     echo <<<HTML
-      <div class="winner">$winner wins!</div>
+      <div class="winner">$winner_mark wins!</div>
 HTML;
   }
 

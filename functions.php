@@ -56,9 +56,9 @@
   }
 
   function check_valid_move($square) {
-    global $grid, $winner;
+    global $grid;
     // Can this player mark this square?
-    return $grid[$square] == 0 && !isset($winner);
+    return $grid[$square] == 0;
   }
 
   function display_square($square) {
@@ -69,6 +69,7 @@
     $content = num2mark($grid[$square]);
 
     // If the square's free...
+
     if (check_valid_move($square)) {
 
       // Render the HTML tag for a linked square.
