@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
+<div class="header">
+  <a href="index.php" class="reset">Reset</a>
+</div>
+<div class="container">
 <div class="grid">
 <?php
 
@@ -19,7 +22,7 @@
 
   display_grid($grid, $player, $winner);
 
-?></div>
+?></div></div>
 
 <?php
   
@@ -31,7 +34,11 @@ HTML;
 
 ?>
 
-  <a href="index.php" class="reset">Reset</a>
+<div class="scores">
+  <div class="score"><p class="score__name">You</p><p class="score__number">0</p></div>
+  <div class="score"><p class="score__name">Computer</p><p class="score__number">0</p></div>
+  <div class="score"><p class="score__name">Draw</p><p class="score__number">0</p></div>
+</div>
 
 </body>
 </html>

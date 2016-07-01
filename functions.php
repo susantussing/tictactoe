@@ -39,13 +39,13 @@
 
       // Render the HTML tag for a linked square.
       echo <<<HTML
-        <a class="square" href="?grid=$newgrid&player=$newplayer">$content</a>
+        <a class="grid__square" href="?grid=$newgrid&player=$newplayer">$content</a>
 HTML;
     } else {
       // If the square isn't free, then make an unlinked box with the 
       // current mark.
       echo <<<HTML
-        <div class="square">$content</div>   
+        <div class="grid__square">$content</div>   
 HTML;
     }
   }
