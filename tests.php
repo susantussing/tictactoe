@@ -48,11 +48,18 @@
   run_test(check_winning_move(2, 1));
   run_test(!check_winning_move(2, 2));
 
+  $grid = "200110000";
+  run_test(check_winning_move(5, 1));
+  run_test(!check_winning_move(1, 1));
+
+  blank_grid();
+  run_test(!check_winning_move(0,1));
+
   // computer_move
 
   echo "Checking to see that the computer wins if it can.\n";
 
-  $_SESSION['human'] = 1;
+  $human = 1;
   $computer = 2;
 
   $grid = "220010000";
@@ -67,6 +74,7 @@
 
   blank_grid();
   run_test(computer_move() == 4);
+  echo $grid . " " . computer_move() . "\n";
 
   $grid = "000010000";
   run_test(computer_move() == 0);
