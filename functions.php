@@ -48,13 +48,9 @@
       // Otherwise, we're player 2, and next move is player 1.
       $newplayer = ($player == 1) ? 2 : 1;
 
-      // This square's link should go to a grid that has this player's
-      // mark in this square.
-      $newgrid = substr_replace($grid, $player, $square, 1);
-
       // Render the HTML tag for a linked square.
       echo <<<HTML
-        <a class="grid__square" href="?grid=$newgrid&player=$newplayer">$content</a>
+        <a class="grid__square" href="?move=$square&player=$newplayer">$content</a>
 HTML;
     } else {
       // If the square isn't free, then make an unlinked box with the 
@@ -85,5 +81,10 @@ HTML;
         return num2mark($grid[$win[0]]);
       }
     }
+  }
+
+  function do_move($square, $player) {
+    global $grid;
+    $grid[$square] = $player;
   }
 ?>

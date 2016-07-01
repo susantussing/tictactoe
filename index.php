@@ -10,20 +10,30 @@
 </head>
 <body>
 <div class="header">
-  <a href="index.php" class="reset">Reset</a>
+  <a href="index.php?reset=true" class="reset">Reset</a>
 </div>
 <div class="container">
 <div class="grid">
 <?php
   // If there's a grid variable in this session, we have a game in progress.
-  if (isset($_SESSION['grid'])) {
+  if (!isset($_SESSION['grid'])) {
     new_game();
   } else {
     load_game();
   } 
   parse_str($_SERVER['QUERY_STRING'], $query);
-  $grid = isset($query['grid']) ? $query['grid'] : "000000000";
+
+  // If anything's set in the 'reset' query variable, reset the game.
+  if (isset($query['reset'])) {
+    new_game();
+  }
+
   $player = isset($query['player']) ? $query['player'] : 1;
+
+  if (isset($query['move'])) {
+    do_move($query['move'], $player);
+  }
+
   $winner = check_winner($grid);
 
   display_grid($grid, $player, $winner);
