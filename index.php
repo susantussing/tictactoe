@@ -21,16 +21,15 @@
   } else {
     load_game();
   } 
-  parse_str($_SERVER['QUERY_STRING'], $query);
 
   // If anything's set in the 'reset' query variable, reset the game.
-  if (isset($query['reset'])) {
+  if (isset($_GET['reset'])) {
     new_game();
   } 
 
   // If there's a move here for the player, do it.
-  if (isset($query['move'])) {
-    do_move($query['move'], $human);
+  if (isset($_GET['move'])) {
+    do_move($_GET['move'], $human);
   }
 
   // If the computer goes first or if it's after the first turn, the computer moves.
