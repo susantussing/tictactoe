@@ -71,3 +71,10 @@ a {
   float: right;
   font-weight: 600;
 }
+
+.winner {
+  font-size: 20px;
+  max-width: 500px;
+  text-align: center;
+  margin: 10px;
+}
