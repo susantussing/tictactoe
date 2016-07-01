@@ -2,7 +2,7 @@
 
   function new_game() {
     global $grid, $human, $computer;
-    $grid = "000000000";
+    blank_grid();
     $human = rand(1,2);
     $computer = opponent($human);
   }
@@ -139,20 +139,19 @@ HTML;
     for ($square = 0; $square < 9; $square++) {
       if (check_winning_move($square, $computer)) {
         return $square;
-        break;
       }
     }
 
     // We'd settle for preventing the other player from winning.
     for ($square = 0; $square < 9; $square++) {
       if (check_winning_move($square, $human)) {
-        $computer_move = $square;
-        break;
+        return $square;
       }
     }
 
     // If we can't do either, pick the best move available.
     // TODO:  Randomize this a bit.
+    // TODO:  Computer shouldn't pick a move that's already got its win blocked.
     foreach ($move_list as $move) {
       if (check_valid_move($move)) {
         return $move;

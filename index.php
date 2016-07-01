@@ -28,10 +28,12 @@
     new_game();
   } 
 
+  // If there's a move here for the player, do it.
   if (isset($query['move'])) {
     do_move($query['move'], $human);
   }
 
+  // If the computer goes first or if it's after the first turn, the computer moves.
   if ($grid != "000000000" || $computer == 1) {
     do_move(computer_move(), $computer);
   }
