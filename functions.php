@@ -15,6 +15,10 @@
     foreach ($game_vars as $game_var) {
       $GLOBALS[$game_var] = $_SESSION[$game_var];
     }
+
+    if (check_winner($GLOBALS['grid']) || check_draw()) {
+      new_game();
+    }
   }
 
   function save_game() {
