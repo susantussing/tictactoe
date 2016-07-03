@@ -28,6 +28,22 @@
     }
   }
 
+  function end_game() {
+    global $wins, $losses, $draws, $grid, $human, $computer, $done, $winner;
+    $winner = check_winner($grid);
+
+    if ($winner || check_draw()) {
+      if ($winner == $human) {
+        $wins++;
+      } elseif ($winner == $computer) {
+        $losses++;
+      } else {
+        $draws++;
+      }
+      $done = true;
+    }
+  }
+
   function blank_grid() {
     // Just creates a blank grid.
     global $grid;
@@ -63,9 +79,9 @@
   }
 
   function check_valid_move($square) {
-    global $grid;
+    global $grid, $done;
     // Can this player mark this square?
-    return $grid[$square] == 0;
+    return $grid[$square] == 0 && !$done;
   }
 
   function display_square($square) {

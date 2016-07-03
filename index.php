@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="header">
-  <a href="index.php?reset=true" class="reset">Reset</a>
+  <a href="index.php?reset=true" class="reset">Reset Game</a>
 </div>
 <div class="container">
 <div class="grid">
@@ -37,32 +37,25 @@
     do_move(computer_move(), $computer);
   }
 
-  $winner = check_winner($grid);
+  end_game();
 
   display_grid();
 
 ?></div></div>
 
-<?php
-  
-  if ($winner) {
-    $winner_mark = num2mark($winner);
-    echo <<<HTML
-      <div class="winner">$winner_mark wins!</div>
-HTML;
-    if ($winner == $human) {
-      $wins++;
-    } else {
-      $losses++;
-    }
-  } elseif (check_draw()) {
-    echo <<<HTML
-      <div class="winner">It's a draw!</div>
-HTML;
-    $draws++;
-  }
+<?php if ($done && $winner) { ?>
 
-?>
+  <div class="winner">
+    <?php echo num2mark($winner) ?> wins!
+  </div>
+
+<?php } elseif (check_draw()) { ?>
+
+  <div class="winner">
+  It's a draw!
+  </div>
+
+<?php } ?>
 
 <div class="scores">
   <div class="score">
