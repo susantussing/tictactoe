@@ -20,6 +20,10 @@ a {
   padding: 5px;
 }
 
+.header__link {
+  margin-right: 24px;
+}
+
 .container {
   background-color: #00864B;
   padding: 16px;

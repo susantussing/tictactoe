@@ -10,7 +10,9 @@
 </head>
 <body>
 <div class="header">
-  <a href="index.php?reset=true" class="reset">Reset Game</a>
+  <a href="index.php?reset=true" class="header__link">New Game</a>
+  <a href="index.php?save=true" class="header__link">Save Game</a>
+  <a href="index.php?load=true" class="header__link">Load Game</a>
 </div>
 <div class="container">
 <div class="grid">
