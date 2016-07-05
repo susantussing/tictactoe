@@ -2,7 +2,8 @@
 
   function run_game() {
     global $computer, $human, $grid;
-    // TODO: Check to see if there's a file load/save.  Do that first.
+
+
 
     // Is there an existing session?
     if (isset($_SESSION['grid'])) {
@@ -15,6 +16,14 @@
     } else {
       // If there's no existing session, start a new game. 
       new_game();
+    }
+
+    // Check to see if there's a file load/save.
+    if (isset($_GET['save'])) {
+      save_to_file();
+    } elseif (isset($_GET['load'])) {
+      // Load can clobber our existing game.  That's fine.
+      load_from_file();
     }
 
     // Now we have either a new game, or an existing game loaded.
@@ -40,7 +49,7 @@
     save_game();
   }
 
-  $game_vars = ['grid', 'human', 'computer', 'wins', 'losses', 'draws'];
+  $game_vars = ['grid', 'human', 'computer', 'wins', 'losses', 'draws', 'done'];
   function new_game() {
     global $grid, $human, $computer, $wins, $losses, $draws;
     blank_grid();
@@ -76,8 +85,7 @@
   function end_game() {
     global $wins, $losses, $draws, $grid, $human, $computer, $done, $winner;
     $winner = check_winner($grid);
-
-    if ($winner || check_draw()) {
+    if ( ($winner || check_draw()) && !$done ) {
       if ($winner == $human) {
         $wins++;
       } elseif ($winner == $computer) {
@@ -241,5 +249,15 @@ HTML;
       return true;
     }
     return false;
+  }
+
+  // File storage functions
+
+  function save_to_file() {
+    echo "Saved!";
+  }
+
+  function load_from_file() {
+    echo "Loaded!";
   }
 ?>
