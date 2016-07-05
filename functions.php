@@ -47,10 +47,11 @@
 
   $game_vars = ['grid', 'human', 'computer', 'wins', 'losses', 'draws', 'done'];
   function new_game() {
-    global $grid, $human, $computer, $wins, $losses, $draws;
+    global $grid, $human, $computer, $wins, $losses, $draws, $done;
     blank_grid();
     $human = rand(1,2);
     $computer = opponent($human);
+    $done = false;
 
     // Only set these if there's really no existing session.
     if (!isset($_SESSION['wins'])) {
