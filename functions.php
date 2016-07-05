@@ -1,13 +1,58 @@
 <?php 
+
+  function run_game() {
+    global $computer, $human, $grid;
+    // TODO: Check to see if there's a file load/save.  Do that first.
+
+    // Is there an existing session?
+    if (isset($_SESSION['grid'])) {
+      // If so, then load the current game.
+      load_game();
+      // If so, is there a game reset?  If so, start a new game.
+      if (isset($_GET['reset'])) {
+        new_game();
+      }
+    } else {
+      // If there's no existing session, start a new game. 
+      new_game();
+    }
+
+    // Now we have either a new game, or an existing game loaded.
+
+    // If it's the first turn and the computer is player 1, the computer should go before the human player sees the grid.
+    if ($computer == 1 && $grid == "000000000") {
+      do_move(computer_move(), 1);
+    } elseif (isset($_GET['move'])) {
+      // Is there a valid move input?  If so, the human player should move, and then go to the computer player move.
+      $move = $_GET['move'];
+      if (check_valid_move($move)) {
+        do_move($move, $human);
+        do_move(computer_move(), $computer);
+      }
+    }
+    // If there's no valid move input and the computer isn't entitled to go first, make no changes to the grid.
+
+    // Now we have the grid after all moves have been made.
+
+    // Is the game over?  (Win or draw.)  Update the appropriate variables.
+    end_game();
+    // Save the current state of the game to the session.
+    save_game();
+  }
+
   $game_vars = ['grid', 'human', 'computer', 'wins', 'losses', 'draws'];
   function new_game() {
-    global $grid, $human, $computer;
+    global $grid, $human, $computer, $wins, $losses, $draws;
     blank_grid();
     $human = rand(1,2);
     $computer = opponent($human);
-    $wins = 0;
-    $losses = 0;
-    $draws = 0;
+
+    // Only set these if there's really no existing session.
+    if (!isset($_SESSION['wins'])) {
+      $wins = 0;
+      $losses = 0;
+      $draws = 0;
+    }
   }
 
   function load_game() {
@@ -16,9 +61,9 @@
       $GLOBALS[$game_var] = $_SESSION[$game_var];
     }
 
-    if (check_winner($GLOBALS['grid']) || check_draw()) {
-      new_game();
-    }
+    // if (check_winner($GLOBALS['grid']) || check_draw()) {
+    //   new_game();
+    // }
   }
 
   function save_game() {
