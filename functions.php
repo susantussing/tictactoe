@@ -1,9 +1,6 @@
 <?php 
-
   function run_game() {
     global $computer, $human, $grid;
-
-
 
     // Is there an existing session?
     if (isset($_SESSION['grid'])) {
@@ -40,7 +37,6 @@
       }
     }
     // If there's no valid move input and the computer isn't entitled to go first, make no changes to the grid.
-
     // Now we have the grid after all moves have been made.
 
     // Is the game over?  (Win or draw.)  Update the appropriate variables.
@@ -235,7 +231,6 @@ HTML;
     }
 
   }
-
 
   function check_draw() {
     global $grid;
