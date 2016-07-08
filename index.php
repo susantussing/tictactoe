@@ -1,5 +1,38 @@
-<?php session_start();
-  include 'functions.php'; ?>
+<?php
+  include 'model.php';
+  include 'controller.php';
+  include 'view.php';
+
+  $move = isset($_GET['move']) ? $_GET['move'] : false;
+
+  // Is there an existing session?
+  if (isset($_SESSION['grid'])) {
+    // If so, then load the current game.
+    load_game();
+    // If so, is there a game reset?  If so, start a new game.
+    if (isset($_GET['reset'])) {
+      new_game();
+    }
+  } else {
+    // If there's no existing session, start a new game. 
+    new_game();
+  }
+
+  // Check to see if there's a file load/save.
+  if (isset($_GET['save'])) {
+    save_to_file();
+  } elseif (isset($_GET['load'])) {
+    // Load can clobber our existing game.  That's fine.
+    load_from_file();
+  }
+
+  run_game();
+
+  // Is the game over?  (Win or draw.)  Update the appropriate variables.
+  end_game();
+  // Save the current state of the game to the session.
+  save_game();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +50,7 @@
 <div class="container">
   <div class="grid">
   <?php
-    // Run the game.
-    run_game();
 
-    // Now draw the grid.
     display_grid();
   ?>
   </div>
@@ -43,7 +73,6 @@
 
 <?php 
   } 
-  // Now list the running scores for the session.
 ?>
 
 <div class="scores">
