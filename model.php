@@ -6,7 +6,7 @@ function run_game() {
   // If it's the first turn and the computer is player 1, the computer should go before the human player sees the grid.
   if ($computer == 1 && $grid == "000000000") {
     do_move(computer_move(), 1);
-  } elseif ($move) {
+  } elseif (isset($move)) {
     // Is there a valid move input?  If so, the human player should move, and then go to the computer player move.
     if (check_valid_move($move)) {
       do_move($move, $human);

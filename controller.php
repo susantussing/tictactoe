@@ -20,7 +20,7 @@
   function save_to_file() {
     global $save_file, $grid, $human, $computer, $done;
     $fh = fopen($save_file, 'w');
-    $save_data = $grid . $human . $computer . $done;
+    $save_data = $grid . $human . $computer . bool2str($done);
     fwrite($fh, $save_data);
   }
 
@@ -31,8 +31,15 @@
     $grid = substr($save_data, 0, 9);
     $human = $save_data[9];
     $computer = $save_data[10];
-    $done = $save_data[11];
+    $done = str2bool($save_data[11]); 
   }
 
+  function bool2str($bool) {
+    return ($bool) ? "1" : "0";
+  }
+
+  function str2bool($str) {
+    return $str == "1";
+  }
 
 ?>

@@ -3,7 +3,7 @@
   include 'controller.php';
   include 'view.php';
 
-  $move = isset($_GET['move']) ? $_GET['move'] : false;
+  $move = isset($_GET['move']) ? $_GET['move'] : null;
 
   // Is there an existing session?
   if (isset($_SESSION['grid'])) {
